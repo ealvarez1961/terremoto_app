@@ -12,14 +12,16 @@ st.set_page_config(layout="wide")
 ##############################
 ### TÍTULO
 ##############################
-st.markdown(
-    """
-    <h1 style='text-align:center; font-size:32px;'>
-        Datos en Tiempo Real de los Terremotos en Puerto Rico y el Mundo
-    </h1>
-    """,
-    unsafe_allow_html=True)
-st.divider()
+st.markdown("""
+<h1 style="
+    text-align:center;
+    font-size:32px;
+    margin-bottom:5px;
+">
+    Datos en Tiempo Real de los Terremotos en Puerto Rico y el Mundo
+</h1>
+<hr style="margin-top:0; margin-bottom:20px;">
+""", unsafe_allow_html=True)
 
 
 ##################################
@@ -167,7 +169,7 @@ df = df.dropna(subset=["lat", "lon"])
 ##########################################
 st.markdown(
     f"""
-    <div style="text-align:center; font-size:18px;">
+    <div style="text-align:center; font-size:16px;">
         <b>Fecha de petición:</b> {datetime.now().strftime("%Y-%m-%d %H:%M")}<br>
         <b>Cantidad de eventos:</b> {len(df)}<br>
         <b>Promedio de magnitudes:</b> {round(df["mag"].mean(), 3)}<br>
@@ -215,8 +217,8 @@ def generaMapa(df, zona_geografica):
         size_max=10,
         opacity=0.5,
         center=center,
-        width=1500,
-        height=600, 
+        width=2000,
+        height=500, 
         mapbox_style="dark",
         zoom=zoom
     )
@@ -233,16 +235,10 @@ if mapa:
 ##########################################
 def generaMag(df):
     fig = px.histogram(df, x="mag", title="Histograma de Magnitudes",
-                       color_discrete_sequence=["red"], height=600)
+                       color_discrete_sequence=["red"], height=500)
     fig.update_layout(
-        title_x=0.1,
-         # Añadir borde negro
-          # shapes=[dict(
-          #      type='rect',
-          #      xref='paper', yref='paper',
-          #      x0=0, y0=0, x1=1, y1=1,
-          #      line=dict(color='black', width=1)  )] 
-        )
+        title_x=0.1,)
+    
     return fig
 
 with col1:
@@ -250,20 +246,11 @@ with col1:
 
 def generaProf(df):  
      fig = px.histogram(df, x="prof", title="Histograma de Profundidades",
-                        color_discrete_sequence=["red"], height=600)
+                        color_discrete_sequence=["red"], height=500)
      fig.update_layout(
-         title_x=0.01,
-        # # Añadir borde negro
-         # shapes=[dict(
-         #     type='rect',
-         #     xref='paper', yref='paper',
-         #     x0=0, y0=0, x1=1, y1=1,
-         #     line=dict(color='black', width=1)  )] 
-         
-     
-         )
+         title_x=0.02,)
+       
      return fig
 
 with col2:
     st.plotly_chart(generaProf(df), use_container_width=True)
-    
