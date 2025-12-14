@@ -1,22 +1,3 @@
-# 🎈 Blank app template
-
-A simple Streamlit app template for you to modify!
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
 # Visualización de Terremotos en Tiempo Real
 
 Aplicación desarrollada en **Python** utilizando **Streamlit**, **Plotly** y datos sísmicos obtenidos mediante la librería `quakefeeds`.
@@ -49,3 +30,5 @@ Incluye:
 1. Instalar dependencias:
 ```bash
 pip install streamlit pandas plotly quakefeeds
+## Correr el app
+   $ streamlit run streamlit_app.py
